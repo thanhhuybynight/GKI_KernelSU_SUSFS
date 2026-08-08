@@ -38,6 +38,16 @@ on:
           - SukiSU(40548)
           - ReSukiSU
         default: ReSukiSU
+      ksu_repository:
+        description: "KittiSU repository URL"
+        required: false
+        type: string
+        default: "https://github.com/terebiko/KittiSU"
+      ksu_branch:
+        description: "KittiSU branch"
+        required: false
+        type: string
+        default: "main"
 
       # ==================== 可选配置 ====================
       version:
@@ -203,6 +213,8 @@ jobs:
       os_patch_level: ${{ inputs.os_patch_level }}
       revision: "r1"
       ksu_variant: ${{ inputs.kernelsu_variant }}
+      ksu_repository: ${{ inputs.ksu_repository }}
+      ksu_branch: ${{ inputs.ksu_branch }}
       version: ${{ inputs.version || '' }}
       build_time: ${{ inputs.build_time || '' }}
       use_zram: ${{ inputs.use_zram }}
