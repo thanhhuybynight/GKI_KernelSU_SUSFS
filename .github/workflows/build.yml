@@ -477,7 +477,7 @@ jobs:
               ;;
             "ReSukiSU")
               echo "添加 ReSukiSU..."
-              curl -LSs "https://raw.githubusercontent.com/terebiko/KittiSU/main/kernel/setup.sh" | bash -s dev
+              curl -LSs "https://raw.githubusercontent.com/terebiko/KittiSU/main/kernel/setup.sh" | bash -s testing
               ;;
             *)
               if [ -z "$LEGACY_SUKISU_CONFIG" ]; then
