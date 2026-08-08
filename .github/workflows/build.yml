@@ -25,6 +25,14 @@ on:
       ksu_variant:
         required: true
         type: string
+      ksu_repository:
+        required: false
+        type: string
+        default: "https://github.com/terebiko/KittiSU"
+      ksu_branch:
+        required: false
+        type: string
+        default: "main"
 
       # ==================== 可选配置 ====================
       version:
@@ -477,7 +485,12 @@ jobs:
               ;;
             "ReSukiSU")
               echo "添加 ReSukiSU..."
-              curl -LSs "https://raw.githubusercontent.com/terebiko/KittiSU/main/kernel/setup.sh" | bash -s testing
+              KITTISU_REPOSITORY="${{ inputs.ksu_repository }}"
+              KITTISU_REPOSITORY=${KITTISU_REPOSITORY%/}
+              KITTISU_REPOSITORY=${KITTISU_REPOSITORY%.git}
+              KITTISU_SLUG=${KITTISU_REPOSITORY#https://github.com/}
+              export KITTISU_REPOSITORY
+              curl -LSs "https://raw.githubusercontent.com/${KITTISU_SLUG}/${{ inputs.ksu_branch }}/kernel/setup.sh" | bash -s "${{ inputs.ksu_branch }}"
               ;;
             *)
               if [ -z "$LEGACY_SUKISU_CONFIG" ]; then
